@@ -5,6 +5,7 @@ Sample projects to compare/contrast HTTP v1.1 and v2 and v3 in ASP.NET Core
 - At the time of writing, Chrome does not allow HTTP/3 with a self-signed certificate. 
 - So use Firefox instead when running this code locally.
   - It complains about the self-signed certificate but just click "Advanced.." and "Allow...".
+  - You will also need to manually access the images from each of the WebResource project urls in order to accept the self-signed certificate. See the links below.
 - Use the F12 browser tools "Network" tab to view the protocol used to server the content.
 - You may have to right-click the column headers to select and show the "Protocol" column.
 - Note the following: 

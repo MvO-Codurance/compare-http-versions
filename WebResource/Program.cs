@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Net.Http.Headers;
 
@@ -35,10 +36,13 @@ builder.WebHost.ConfigureKestrel((context, options) =>
 
 var app = builder.Build();
 
-app.MapGet("/", (context) =>
+app.MapGet("/", async (context) =>
 {
+    var millisecondDelay = RandomNumberGenerator.GetInt32(250, 1000);
+    await Task.Delay(millisecondDelay);
+    
     context.Response.Headers[HeaderNames.CacheControl] = "no-store";
-    return Results.File(
+    await Results.File(
             path: Path.Combine(app.Environment.ContentRootPath, @"images/jimmi.jpg"), 
             contentType: "image/jpeg")
         .ExecuteAsync(context);
